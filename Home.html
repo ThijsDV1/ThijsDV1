@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>For Everybook</title>
+ <link rel="stylesheet" href="style.css">
+ 
+</head>
+<style>
+ 
+ 
+header {
+ background-color: #008080;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px;
+}
+html, body {
+ height: 100%;
+ overflow: auto;
+ }
+ 
+ 
+ body {
+ background-color: #EDEAE0;
+}
+ 
+select {
+ background-color: white;
+ color: blue;
+ padding: 5px;
+ font-size: 16px;
+ border: none;
+}
+/* stijlen voor button groep */
+aside {
+ 
+ overflow: auto;
+ margin-bottom: 10%;
+ background-color: #ABD7EB;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ height: 100%;
+ width: 150px;
+ padding: 20px;
+ position: fixed;
+ left: 0;
+ top: 0;
+ color:rgba(0, 0, 0, 0.5);
+}
+ 
+aside button:last-child {
+ margin-bottom: 20px;
+}
+ 
+button {
+ background-color: white;
+ color: #000000;
+ font-weight: 10px;
+ padding: 10px;
+ border: none;
+ width: 100%;
+ margin-bottom: 10px;
+ cursor: pointer;
+}
+/* stijlen voor main inhoud */
+main {
+ margin-left: 170px; /* 150px voor de breedte van de button groep + 20px voor padding */
+}
+/* stijlen voor footer */
+footer {
+ background-color: #9d8189 ;
+ height: 50px;
+ width: 100%;
+ position: fixed;
+ bottom: 0;
+ 
+}
+ 
+.title h1 {
+ font-size: 55px;
+ font-family: 'Brush Script MT', cursive;
+ margin: 0;
+ font-weight: bold;
+ color: white;
+ position: relative; /* zorgt ervoor dat left werkt */
+ left: 150px; /* 150px naar rechts */
+}
+ 
+.form-container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+ 
+#search {
+ padding: 8px;
+ font-size: 16px;
+ border: none;
+ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+ margin-right: -20px;
+ width: 300px; /* breedte aanpassen */
+}
+ 
+#submit {
+ display: inline-block;
+ padding: 10px 15px;
+ border: none;
+ background-color: #ABD7EB;
+ color: #333;
+ text-align: center;
+ text-decoration: none;
+ cursor: pointer;
+ margin-left: -30px;
+ width: 130px;
+ color:white;
+ 
+}
+ 
+ 
+ input[type="text"] {
+ width: 300px;
+ height: 40px;
+ padding: 10px;
+ font-size: 18px;
+ border: 2px solid #ccc;
+ border-radius: 20px;
+ outline: none;
+ }
+ 
+ button[type="submit"] {
+ width: 80px;
+ height: 40px;
+ background-color: #007bff;
+ color: white;
+ border: none;
+ border-radius: 20px;
+ font-size: 18px;
+ cursor: pointer;
+ margin-left: 10px;
+ }
+ 
+ button[type="submit"]:hover {
+ background-color: #0069d9;
+ }
+ 
+ #overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.5);
+ display: none;
+ justify-content: center;
+ align-items: center;
+ }
+ 
+ #popup {
+ background-color: white;
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ }
+ 
+ 
+ :root {
+ --border-size: 0.125rem;
+ --duration: 250ms;
+ --ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+ --font-family: monospace;
+ --color-primary: white;
+ --color-secondary: black;
+ --color-tertiary: dodgerblue;
+ --shadow: rgba(0, 0, 0, 0.1);
+ --space: 1rem;
+ }
+ 
+ * {
+ box-sizing: border-box;
+ }
+ body {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ .oefing {
+margin-top : 200px;
+ 
+ 
+ background-color: #ffffff;
+ }
+ 
+ .popup{
+ background-color: #ffffff;
+ width: 950px;
+ padding: 30px 40px;
+ position: absolute;
+ transform: translate(-50%,-50%);
+ left: 50%;
+ top: 50%;
+ border-radius: 8px;
+ font-family: "Poppins",sans-serif;
+ display: none;
+ text-align: center;
+}
+.popup button{
+ display: block;
+ margin: 0 0 20px auto;
+ background-color: transparent;
+ font-size: 30px;
+ color: #c5c5c5;
+ border: none;
+ outline: none;
+ cursor: pointer;
+}
+.popup p{
+ font-size: 14px;
+ text-align: justify;
+ margin: 20px 0;
+ line-height: 25px;
+}
+ 
+ 
+.extra-balk {
+ display: flex;
+ justify-content: flex-end;
+ height: 50px;
+ width: 100%;
+ margin: 0 auto;
+ background-color: #3EB489;
+}
+ 
+.extra-balk button {
+ background-color: #3EB489;
+ border: none;
+ color: white;
+ text-align: center;
+ text-decoration: none;
+ font-size: 16px;
+ margin: 4px;
+ cursor: pointer;
+ border-radius: 5px;
+ width: 160px;
+ transition: background-color 0.2s ease-in-out;
+}
+ 
+.extra-balk button:hover {
+ background-color: #008080;
+}
+ 
+.container {
+ margin-left: 10%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}
+ 
+.container h1 {
+ margin-top: 10;
+}
+ 
+</style>
+ 
+ <header>
+ 
+ <div class="title">
+ <h1>For Everybook</h1>
+ </div>
+ 
+ 
+ <div class="search-category-container" >
+ <form class="search-form">
+ <input type="text" id="search" placeholder="Zoeken...">
+ <button type="submit" id="submit">Search<i class="fa fa-search"></i></button>
+ </form>
+ </div>
+ 
+
+ 
+ <script>
+ 
+const searchInput = document.getElementById('search');
+const searchForm = document.querySelector('.search-form');
+ 
+searchForm.addEventListener('submit', event => {
+ event.preventDefault();
+ const searchTerm = searchInput.value.toLowerCase().trim();
+ 
+ if (searchTerm.startsWith('nonfictie')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('non')) {
+ if (confirm(`Bedoelde je "nonfictie"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ } else if (searchTerm.startsWith('fictie')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('fic')) {
+ if (confirm(`Bedoelde je "fictie"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('historisch')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('his')) {
+ if (confirm(`Bedoelde je "Historisch"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('science-Fiction ')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('sci')) {
+ if (confirm(`Bedoelde je "science-Fiction"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+} else if (searchTerm.startsWith('fantasy')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('fan')) {
+ if (confirm(`Bedoelde je "fantasy"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+} else if (searchTerm.startsWith('romantiek')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('rom')) {
+ if (confirm(`Bedoelde je "romantiek"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('thriller')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('thr')) {
+ if (confirm(`Bedoelde je "thriller"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('Misdaad')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('Mis')) {
+ if (confirm(`Bedoelde je "Misdaad"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+} else if (searchTerm.startsWith('detective')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('det')) {
+ if (confirm(`Bedoelde je "Detective"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+} else if (searchTerm.startsWith('Kinder')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('Kin')) {
+ if (confirm(`Bedoelde je "Kinder"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('Kook')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('Ko')) {
+ if (confirm(`Bedoelde je "Kook"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+} else if (searchTerm.startsWith('Reis')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('Reiz')) {
+ if (confirm(`Bedoelde je "Reis"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+} else if (searchTerm.startsWith('School')) {
+ window.location.href = '12490.html';
+ } else if (searchTerm.startsWith('School')) {
+ if (confirm(`Bedoelde je "School"?\n\nKlik op OK om door te gaan of op Annuleren om te annuleren.`)) {
+ window.location.href = '12490.html';
+ }
+ 
+ 
+ } else if (searchTerm.startsWith('thrill')) {
+ window.location.href = '456.html';
+ } else if (searchTerm.startsWith('roman')) {
+ window.location.href = '789.html';
+ } else if (searchTerm.startsWith('fantas')) {
+ window.location.href = '101112.html';
+ } else if (searchTerm.startsWith('kinder')) {
+ window.location.href = '131415.html';
+ } else if (searchTerm.startsWith('poë')) {
+ window.location.href = '161718.html';
+ } else if (searchTerm.startsWith('kook')) {
+ window.location.href = '192021.html';
+ } else if (searchTerm.startsWith('geschied')) {
+ window.location.href = '222324.html';
+ } else if (searchTerm.startsWith('biogr')) {
+ window.location.href = '252627.html';
+ } else if (searchTerm.startsWith('reis')) {
+ window.location.href = '282930.html';
+ } else if (searchTerm.startsWith('filos')) {
+ window.location.href = '313233.html';
+ } else {
+ alert(`Sorry, we hebben nog geen thema met de naam"${searchTerm}" `);
+ }
+});
+ 
+ </script>
+ 
+
+ </div>
+ </header>
+ 
+ <div class="extra-balk">
+ <a href="login.html"><button> Login</button></a>
+ <a href="aanmelden.html"><button> Aanmelden </button></a>
+ <a href="chat.html"><button> Bookchat </button></a>
+ <a href="about.html"><button>Over Foreverybook</button></a>
+ <a href="contact.html"><button> Contact </button></a>
+ </div>
+ 
+ <aside>
+ <button>BookforBook</button>
+ <button>Kopen</button>
+ <button>Verkopen</button>
+ <button>Ruilen</button>
+ <button>Bieden</button>
+ 
+ <br><br>
+ 
+ <button>Fictie</button>
+ <button>Non-fictie</button>
+ <button>Historisch</button>
+ <button>Sciencefiction</button>
+ <button>Fantasy</button>
+ <button>Romantiek</button>
+ <button>Thriller</button>
+ <button>Misdaad</button>
+ <button>Detective</button>
+ <button>Kinderboeken</button>
+ <button>Kookboeken</button>
+ <button>Reisboeken</button>
+ 
+ </aside>
+ 
+ <body>
+ 
+ <div class="popup">
+ <button id="close">&times;</button>
+ <h2>Mogen we Cookies gebruiken?</h2>
+ <p>
+ Om BookSwap beter voor jou te laten werken en persoonlijker te maken, gebruiken wij en onze partners cookies en vergelijkbare technieken en gepseudonimiseerde gebruikersdata. Hiermee analyseren we de prestaties van ons platform, verbeteren we de ervaring en kunnen wij en onze partners de website, onze communicatie en advertenties aanpassen op jouw interesses.
+ 
+ Door op "Accepteren" te klikken ga je hiermee akkoord. Je kunt cookies ook weigeren door hieronder op Instellingen te klikken of je toestemming later intrekken via BookSwap.nl/consent. Je kunt je instellingen ook aanpassen via onderstaande knop.
+ 
+ Meer weten? Lees ons cookiebeleid en onze Privacyverklaring die op de homepagina staan. 
+ </p>
+ <div class="buttons-container">
+ <a href="loading.html">Accepteren</a>
+ <a href="instelling.html" class="settings-button">Instellingen</a>
+ </div>
+ </div>
+ 
+ <div class="oefening">
+ 
+
+ 
+ </div>
+ 
+ 
+ </body>
+ 
+
+ <head>
+    <style>
+      .book-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 2000px; /* Voeg een maximale breedte toe aan de container */
+      margin: 0 auto; /* Centreer de container op de pagina */
+    }
+  
+      .book {
+        width: 28%;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        cursor: pointer;
+        position: relative; /* Toegevoegd */
+      }
+  
+      .book img {
+        width: 100%;
+        max-height: 450px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+  
+      .book-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+  
+      .book-price {
+        color: #888;
+        font-size: 12px;
+      }
+  
+      .book-details {
+        display: none;
+        position: absolute; /* Toegevoegd */
+        top: 100%; /* Toegevoegd */
+        left: 0; /* Toegevoegd */
+        width: 100%; /* Toegevoegd */
+        padding: 10px; /* Toegevoegd */
+        background-color: #fff; /* Toegevoegd */
+        border: 1px solid #ccc; /* Toegevoegd */
+        box-sizing: border-box; /* Toegevoegd */
+        font-size: 12px;
+      }
+  
+      .book-details.active {
+        display: block;
+      }
+
+      .book-details.active {
+      display: block;
+      background-color: #ABD7EB; /* Toegevoegd om de achtergrondkleur te wijzigen */
+    }
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="book-container">
+      <div class="book">
+        <img src="Kinderen/GVR.jpg" alt="Book 1">
+        <div class="book-title">de GVR</div>
+        <div class="book-price">€9,99</div>
+        <div class="book-details">
+          <p>leuk boek</p>
+          <p>Auteur: Roald Dahl</p>
+          <p>ISBN: 1234567890</p>
+          <p><a href="#">Koop nu!</a></p>
+        </div>
+      </div>
+      <div class="book">
+        <img src="Kinderen/Matilda.jpg" alt="Book 2">
+        <div class="book-title">Matilda</div>
+        <div class="book-price">€12,49</div>
+        <div class="book-details">
+          <p>Description of Book 2</p>
+          <p>Auteur: Roald Dahl</p>
+          <p>ISBN: 0987654321</p>
+          <p><a href="#">Koop nu!</a></p>
+        </div>
+      </div>
+      <div class="book">
+          <img src="Kinderen/Sjakie.jpg" alt="Book 2">
+          <div class="book-title">Sjakie en de chocoladefabriek</div>
+          <div class="book-price">€9,99</div>
+          <div class="book-details">
+            <p>Description of Book 2</p>
+            <p>Auteur: Roald Dahl</p>
+            <p>ISBN: 0987654321</p>
+            <p><a href="#">Koop nu!</a></p>
+    </div>
+  
+    <script>
+      // Voeg een eventlistener toe aan elke boek
+      const books = document.querySelectorAll('.book');
+      books.forEach(book => {
+        const details = book.querySelector('.book-details');
+        book.addEventListener('click', () => {
+          details.classList.toggle('active');
+        });
+      });
+    </script>
+  </body>
+
+
+
+
+
+
+ <main>
+ <!--inhoud pagina-->
+ </main>
+ 
+</body>
+</html>
